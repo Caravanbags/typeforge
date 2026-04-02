@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)file:///C:/Users/user/Downloads/typing-test%20(2).html -->
+<html lang="en" style="--font-size: 1.4rem;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TypeForge — Typing Speed Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./TypeForge — Typing Speed Test my work of art_files/css2" rel="stylesheet">
+<script src="./TypeForge — Typing Speed Test my work of art_files/chart.umd.min.js.download"></script>
+<style>
+/* ===== CSS VARIABLES / THEMES ===== */
+:root {
+  --bg: #1a1a2e;
+  --bg2: #16213e;
+  --bg3: #0f3460;
+  --text: #a8b2d8;
+  --text-dim: #4a5568;
+  --accent: #e94560;
+  --accent2: #f5a623;
+  --correct: #57cc99;
+  --incorrect: #e94560;
+  --caret: #e94560;
+  --sub: #718096;
+  --border: #2d3748;
+  --font-mono: 'Roboto Mono', monospace;
+  --font-ui: 'Lexend', sans-serif;
+  --font-size: 1.4rem;
+  --radius: 8px;
+  --transition: 0.2s ease;
+}
+
+[data-theme="light"] {
+  --bg: #f7f7f0;
+  --bg2: #eeeee6;
+  --bg3: #ddddd4;
+  --text: #2d2d2d;
+  --text-dim: #aaaaaa;
+  --accent: #e94560;
+  --accent2: #f5a623;
+  --correct: #2e9e5b;
+  --incorrect: #e94560;
+  --caret: #e94560;
+  --sub: #888888;
+  --border: #cccccc;
+}
+
+[data-theme="serika"] {
+  --bg: #323437;
+  --bg2: #2c2e31;
+  --bg3: #232527;
+  --text: #d1d0c5;
+  --text-dim: #646669;
+  --accent: #e2b714;
+  --accent2: #e2b714;
+  --correct: #e2b714;
+  --incorrect: #ca4754;
+  --caret: #e2b714;
+  --sub: #646669;
+  --border: #3a3c40;
+}
+
+[data-theme="miami"] {
+  --bg: #1a1a2e;
+  --bg2: #12122a;
+  --bg3: #0d0d20;
+  --text: #ff6eb4;
+  --text-dim: #4a3060;
+  --accent: #00d4ff;
+  --accent2: #ff6eb4;
+  --correct: #00d4ff;
+  --incorrect: #ff6eb4;
+  --caret: #00d4ff;
+  --sub: #9b59b6;
+  --border: #2d1b4e;
+}
+
+[data-theme="nord"] {
+  --bg: #2e3440;
+  --bg2: #3b4252;
+  --bg3: #434c5e;
+  --text: #eceff4;
+  --text-dim: #4c566a;
+  --accent: #88c0d0;
+  --accent2: #81a1c1;
+  --correct: #a3be8c;
+  --incorrect: #bf616a;
+  --caret: #88c0d0;
+  --sub: #7b88a1;
+  --border: #434c5e;
+}
+
+[data-theme="matrix"] {
+  --bg: #0a0f0a;
+  --bg2: #0d130d;
+  --bg3: #101a10;
+  --text: #00ff41;
+  --text-dim: #003b00;
+  --accent: #00ff41;
+  --accent2: #39ff14;
+  --correct: #00ff41;
+  --incorrect: #ff4141;
+  --caret: #00ff41;
+  --sub: #006600;
+  --border: #003300;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+/* ===== LAYOUT ===== */
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== NAVBAR ===== */
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  flex-shrink: 0;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#logo {
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+#logo span { color: var(--text); }
+
+#mode-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg3);
+  border-radius: 40px;
+  padding: 4px;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border: none;
+  background: transparent;
+  color: var(--sub);
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.mode-btn:hover { color: var(--text); }
+.mode-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+#sub-options {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.opt-btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--sub);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.opt-btn:hover { border-color: var(--accent); color: var(--text); }
+.opt-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(233,69,96,0.08); }
+
+#nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--sub);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 6px;
+  border-radius: 6px;
+  transition: color var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+}
+.icon-btn:hover { color: var(--accent); }
+.icon-btn.active { color: var(--accent); }
+
+#theme-select {
+  background: var(--bg3);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  cursor: pointer;
+  outline: none;
+}
+
+/* ===== SETTINGS BAR ===== */
+#settings-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px 32px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  color: var(--sub);
+}
+
+.toggle {
+  width: 32px;
+  height: 18px;
+  background: var(--bg3);
+  border-radius: 9px;
+  position: relative;
+  cursor: pointer;
+  transition: background var(--transition);
+  border: none;
+  flex-shrink: 0;
+}
+.toggle::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: var(--sub);
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: all var(--transition);
+}
+.toggle.on { background: rgba(233,69,96,0.3); }
+.toggle.on::after { left: 17px; background: var(--accent); }
+
+.font-size-select {
+  background: var(--bg3);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-size: 0.76rem;
+  cursor: pointer;
+  outline: none;
+  font-family: var(--font-ui);
+}
+
+/* ===== MAIN CONTENT ===== */
+#main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 24px 48px;
+}
+
+/* ===== CAPS LOCK WARNING ===== */
+#capslock-warn {
+  display: none;
+  background: var(--accent2);
+  color: #000;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+#capslock-warn.show { display: block; }
+
+/* ===== LIVE STATS ===== */
+#live-stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+  min-height: 40px;
+  align-items: flex-end;
+}
+
+.live-stat {
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.live-stat.visible { opacity: 1; }
+
+.live-stat .val {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+}
+.live-stat .lbl {
+  font-size: 0.65rem;
+  color: var(--sub);
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* ===== TIMER ===== */
+#timer-display {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--accent);
+  margin-bottom: 16px;
+  min-height: 56px;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#timer-display.visible { opacity: 1; }
+
+/* ===== WORD DISPLAY ===== */
+#word-display-wrap {
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+#word-display {
+  font-family: var(--font-mono);
+  font-size: var(--font-size);
+  line-height: 1.9;
+  height: calc(1.9em * 3);
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  cursor: text;
+}
+
+#word-display .word {
+  display: inline-block;
+  margin-right: 0.5em;
+  position: relative;
+  white-space: nowrap;
+}
+
+.char {
+  color: var(--text-dim);
+  position: relative;
+  transition: color 0.05s;
+}
+.char.correct { color: var(--correct); }
+.char.incorrect { color: var(--incorrect); text-decoration: underline; text-decoration-color: var(--incorrect); }
+.char.extra { color: var(--incorrect); opacity: 0.7; }
+.char.current-before {}
+
+/* Caret */
+#caret {
+  position: absolute;
+  width: 2px;
+  background: var(--caret);
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 10;
+  transition: left 0.06s ease, top 0.1s ease;
+  animation: blink 1.2s ease-in-out infinite;
+}
+#caret.block {
+  opacity: 0.35;
+  border-radius: 2px;
+  animation: blink-block 1.2s ease-in-out infinite;
+}
+#caret.no-caret { display: none; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes blink-block {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.1; }
+}
+#caret.typing { animation: none; opacity: 1; }
+
+/* ===== HIDDEN INPUT ===== */
+#hidden-input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  top: -9999px;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
+
+/* ===== HINT ===== */
+#hint {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  margin-top: 8px;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+#hint kbd {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 0.75rem;
+  color: var(--sub);
+}
+
+/* ===== RESULTS ===== */
+#results {
+  display: none;
+  width: 100%;
+  max-width: 900px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+#results h2 {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--sub);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+#results-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+#results-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.result-big {
+  font-family: var(--font-mono);
+}
+.result-big .val {
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+}
+.result-big .lbl {
+  font-size: 0.7rem;
+  color: var(--sub);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.result-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.result-item {
+  font-family: var(--font-mono);
+  text-align: left;
+}
+.result-item .val {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1;
+}
+.result-item .lbl {
+  font-size: 0.65rem;
+  color: var(--sub);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+#chart-wrap {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+  height: 200px;
+  position: relative;
+}
+
+#results-bottom {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.result-card {
+  flex: 1;
+  min-width: 140px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  font-family: var(--font-mono);
+}
+.result-card .card-title {
+  font-size: 0.65rem;
+  color: var(--sub);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.result-card .card-val {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--text);
+}
+.char-correct { color: var(--correct); }
+.char-incorrect { color: var(--incorrect); }
+.char-extra { color: var(--accent2); }
+.char-missed { color: var(--sub); }
+
+#result-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.5px;
+}
+.action-btn.primary {
+  background: var(--accent);
+  color: #fff;
+}
+.action-btn.primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.action-btn.secondary {
+  background: var(--bg2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.action-btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sub); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  #navbar { padding: 12px 16px; gap: 8px; }
+  #main { padding: 16px 12px 32px; }
+  #word-display { font-size: 1.1rem; height: calc(1.9em * 3); }
+  #results-top { grid-template-columns: 1fr; }
+  .result-big .val { font-size: 3rem; }
+  .live-stat .val { font-size: 1.4rem; }
+}
+
+/* ===== PROGRESS BAR ===== */
+#progress-bar-wrap {
+  width: 100%;
+  max-width: 900px;
+  height: 3px;
+  background: var(--bg3);
+  border-radius: 2px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+#progress-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* ===== ZEN MODE ===== */
+#zen-label {
+  display: none;
+  color: var(--sub);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+body.zen-mode #zen-label { display: block; }
+body.zen-mode #timer-display { display: none; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div id="logo">type<span>forge</span></div>
+
+  <div id="mode-tabs">
+    <button class="mode-btn" data-mode="time">⏱ time</button>
+    <button class="mode-btn active" data-mode="words">📝 words</button>
+    <button class="mode-btn" data-mode="quote">💬 quote</button>
+    <button class="mode-btn" data-mode="zen">∞ zen</button>
+  </div>
+
+  <div id="sub-options"><button class="opt-btn">10</button><button class="opt-btn">25</button><button class="opt-btn">50</button><button class="opt-btn active">100</button></div>
+
+  <div id="nav-right">
+    <select id="theme-select" title="Theme">
+      <option value="dark">🌑 dark</option>
+      <option value="light">☀️ light</option>
+      <option value="serika">🟡 serika</option>
+      <option value="miami">🌴 miami</option>
+      <option value="nord">❄️ nord</option>
+      <option value="matrix">💚 matrix</option>
+    </select>
+  </div>
+</nav>
+
+<!-- SETTINGS BAR -->
+<div id="settings-bar">
+  <label class="toggle-group" title="Include punctuation">
+    <button class="toggle on" id="toggle-punct"></button> punctuation
+  </label>
+  <label class="toggle-group" title="Include numbers">
+    <button class="toggle on" id="toggle-nums"></button> numbers
+  </label>
+  <label class="toggle-group" title="Show live WPM">
+    <button class="toggle on" id="toggle-livewpm"></button> live wpm
+  </label>
+  <label class="toggle-group" title="Blind mode (no red)">
+    <button class="toggle on" id="toggle-blind"></button> blind
+  </label>
+  <label class="toggle-group">
+    caret:
+    <select class="font-size-select" id="caret-style">
+      <option value="line">line</option>
+      <option value="block">block</option>
+      <option value="off">off</option>
+    </select>
+  </label>
+  <label class="toggle-group">
+    font:
+    <select class="font-size-select" id="font-size-sel">
+      <option value="1rem">small</option>
+      <option value="1.2rem">medium</option>
+      <option value="1.4rem" selected="">default</option>
+      <option value="1.7rem">large</option>
+      <option value="2rem">xl</option>
+    </select>
+  </label>
+</div>
+
+<!-- MAIN -->
+<main id="main">
+  <div id="capslock-warn">⚠ CAPS LOCK</div>
+
+  <div id="live-stats">
+    <div class="live-stat visible" id="stat-wpm">
+      <div class="val" id="live-wpm">0</div>
+      <div class="lbl">wpm</div>
+    </div>
+    <div class="live-stat visible" id="stat-raw">
+      <div class="val" id="live-raw">0</div>
+      <div class="lbl">raw</div>
+    </div>
+    <div class="live-stat visible" id="stat-acc">
+      <div class="val" id="live-acc">100%</div>
+      <div class="lbl">acc</div>
+    </div>
+  </div>
+
+  <div id="timer-display" class="visible">24s</div>
+
+  <div id="zen-label">ZEN MODE — type freely</div>
+
+  <div id="progress-bar-wrap">
+    <div id="progress-bar" style="width: 0%;"></div>
+  </div>
+
+  <div id="word-display-wrap">
+    <div id="word-display"><span class="word" data-wi="0"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">d</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">m</span><span class="char" data-ci="4">a</span><span class="char" data-ci="5">n</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">'</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="1"><span class="char" data-ci="0">p</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">e</span><span class="char" data-ci="3">t</span><span class="char" data-ci="4">e</span><span class="char" data-ci="5">n</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">i</span><span class="char" data-ci="8">o</span><span class="char" data-ci="9">u</span><span class="char" data-ci="10">s</span><span class="char" data-ci="11">'</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="2"><span class="char" data-ci="0">i</span><span class="char" data-ci="1">m</span><span class="char" data-ci="2">p</span><span class="char" data-ci="3">a</span><span class="char" data-ci="4">r</span><span class="char" data-ci="5">t</span><span class="char" data-ci="6">i</span><span class="char" data-ci="7">a</span><span class="char" data-ci="8">l</span><span class="char" data-ci="9">,</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="3"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">l</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">e</span><span class="char" data-ci="4">r</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="4"><span class="char" data-ci="0">n</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">b</span><span class="char" data-ci="3">u</span><span class="char" data-ci="4">l</span><span class="char" data-ci="5">o</span><span class="char" data-ci="6">u</span><span class="char" data-ci="7">s</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="5"><span class="char" data-ci="0">e</span><span class="char" data-ci="1">f</span><span class="char" data-ci="2">f</span><span class="char" data-ci="3">u</span><span class="char" data-ci="4">s</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">v</span><span class="char" data-ci="7">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="6"><span class="char" data-ci="0">m</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">a</span><span class="char" data-ci="4">g</span><span class="char" data-ci="5">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="7"><span class="char" data-ci="0">t</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">c</span><span class="char" data-ci="4">t</span><span class="char" data-ci="5">a</span><span class="char" data-ci="6">b</span><span class="char" data-ci="7">l</span><span class="char" data-ci="8">e</span><span class="char" data-ci="9">:</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="8"><span class="char" data-ci="0">c</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">u</span><span class="char" data-ci="3">p</span><span class="char" data-ci="4">l</span><span class="char" data-ci="5">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="9"><span class="char" data-ci="0">t</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">a</span><span class="char" data-ci="4">c</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">o</span><span class="char" data-ci="7">u</span><span class="char" data-ci="8">s</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="10"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">s</span><span class="char" data-ci="3">t</span><span class="char" data-ci="4">r</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">b</span><span class="char" data-ci="7">u</span><span class="char" data-ci="8">t</span><span class="char" data-ci="9">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="11"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">o</span><span class="char" data-ci="4">r</span><span class="char" data-ci="5">u</span><span class="char" data-ci="6">m</span><span class="char" data-ci="7">.</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="12"><span class="char" data-ci="0">m</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">r</span><span class="char" data-ci="3">t</span><span class="char" data-ci="4">y</span><span class="char" data-ci="5">r</span><span class="char" data-ci="6">3</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="13"><span class="char" data-ci="0">i</span><span class="char" data-ci="1">n</span><span class="char" data-ci="2">i</span><span class="char" data-ci="3">t</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">a</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">i</span><span class="char" data-ci="8">v</span><span class="char" data-ci="9">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="14"><span class="char" data-ci="0">g</span><span class="char" data-ci="1">u</span><span class="char" data-ci="2">i</span><span class="char" data-ci="3">l</span><span class="char" data-ci="4">e</span><span class="char" data-ci="5">l</span><span class="char" data-ci="6">e</span><span class="char" data-ci="7">s</span><span class="char" data-ci="8">s</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="15"><span class="char" data-ci="0">b</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">o</span><span class="char" data-ci="3">r</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">s</span><span class="char" data-ci="6">h</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="16"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">b</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">n</span><span class="char" data-ci="4">d</span><span class="char" data-ci="5">o</span><span class="char" data-ci="6">n</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="17"><span class="char" data-ci="0">c</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">u</span><span class="char" data-ci="3">n</span><span class="char" data-ci="4">t</span><span class="char" data-ci="5">r</span><span class="char" data-ci="6">y</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="18"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">l</span><span class="char" data-ci="2">m</span><span class="char" data-ci="3">o</span><span class="char" data-ci="4">s</span><span class="char" data-ci="5">t</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="19"><span class="char" data-ci="0">i</span><span class="char" data-ci="1">n</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">r</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">n</span><span class="char" data-ci="6">s</span><span class="char" data-ci="7">i</span><span class="char" data-ci="8">c</span><span class="char" data-ci="9">,</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="20"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">f</span><span class="char" data-ci="3">f</span><span class="char" data-ci="4">e</span><span class="char" data-ci="5">r</span><span class="char" data-ci="6">e</span><span class="char" data-ci="7">n</span><span class="char" data-ci="8">t</span><span class="char" data-ci="9">i</span><span class="char" data-ci="10">a</span><span class="char" data-ci="11">l</span><span class="char" data-ci="12">6</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="21"><span class="char" data-ci="0">b</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">l</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">t</span><span class="char" data-ci="5">t</span><span class="char" data-ci="6">l</span><span class="char" data-ci="7">e</span><span class="char" data-ci="8">?</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="22"><span class="char" data-ci="0">c</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">v</span><span class="char" data-ci="4">o</span><span class="char" data-ci="5">l</span><span class="char" data-ci="6">u</span><span class="char" data-ci="7">t</span><span class="char" data-ci="8">e</span><span class="char" data-ci="9">d</span><span class="char" data-ci="10">!</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="23"><span class="char" data-ci="0">g</span><span class="char" data-ci="1">u</span><span class="char" data-ci="2">i</span><span class="char" data-ci="3">l</span><span class="char" data-ci="4">e</span><span class="char" data-ci="5">l</span><span class="char" data-ci="6">e</span><span class="char" data-ci="7">s</span><span class="char" data-ci="8">s</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="24"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">u</span><span class="char" data-ci="2">g</span><span class="char" data-ci="3">m</span><span class="char" data-ci="4">e</span><span class="char" data-ci="5">n</span><span class="char" data-ci="6">t</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="25"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">o</span><span class="char" data-ci="4">r</span><span class="char" data-ci="5">u</span><span class="char" data-ci="6">m</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="26"><span class="char" data-ci="0">g</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">t</span><span class="char" data-ci="4">u</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">o</span><span class="char" data-ci="8">u</span><span class="char" data-ci="9">s</span><span class="char" data-ci="10">!</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="27"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">f</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">n</span><span class="char" data-ci="5">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="28"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">r</span><span class="char" data-ci="3">o</span><span class="char" data-ci="4">g</span><span class="char" data-ci="5">a</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">o</span><span class="char" data-ci="8">r</span><span class="char" data-ci="9">y</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="29"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">c</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">o</span><span class="char" data-ci="4">m</span><span class="char" data-ci="5">m</span><span class="char" data-ci="6">o</span><span class="char" data-ci="7">d</span><span class="char" data-ci="8">a</span><span class="char" data-ci="9">t</span><span class="char" data-ci="10">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="30"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">u</span><span class="char" data-ci="2">s</span><span class="char" data-ci="3">t</span><span class="char" data-ci="4">e</span><span class="char" data-ci="5">r</span><span class="char" data-ci="6">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="31"><span class="char" data-ci="0">s</span><span class="char" data-ci="1">k</span><span class="char" data-ci="2">i</span><span class="char" data-ci="3">l</span><span class="char" data-ci="4">l</span><span class="char" data-ci="5">5</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="32"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">i</span><span class="char" data-ci="3">l</span><span class="char" data-ci="4">y</span><span class="char" data-ci="5">6</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="33"><span class="char" data-ci="0">r</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">c</span><span class="char" data-ci="4">o</span><span class="char" data-ci="5">r</span><span class="char" data-ci="6">o</span><span class="char" data-ci="7">u</span><span class="char" data-ci="8">s</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="34"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">s</span><span class="char" data-ci="3">p</span><span class="char" data-ci="4">a</span><span class="char" data-ci="5">r</span><span class="char" data-ci="6">a</span><span class="char" data-ci="7">t</span><span class="char" data-ci="8">e</span><span class="char" data-ci="9">2</span><span class="char" data-ci="10">?</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="35"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">c</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">u</span><span class="char" data-ci="4">m</span><span class="char" data-ci="5">u</span><span class="char" data-ci="6">l</span><span class="char" data-ci="7">a</span><span class="char" data-ci="8">t</span><span class="char" data-ci="9">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="36"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">b</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">l</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">a</span><span class="char" data-ci="8">t</span><span class="char" data-ci="9">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="37"><span class="char" data-ci="0">e</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">u</span><span class="char" data-ci="3">d</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">t</span><span class="char" data-ci="6">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="38"><span class="char" data-ci="0">i</span><span class="char" data-ci="1">m</span><span class="char" data-ci="2">p</span><span class="char" data-ci="3">a</span><span class="char" data-ci="4">r</span><span class="char" data-ci="5">t</span><span class="char" data-ci="6">i</span><span class="char" data-ci="7">a</span><span class="char" data-ci="8">l</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="39"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">c</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">o</span><span class="char" data-ci="4">u</span><span class="char" data-ci="5">n</span><span class="char" data-ci="6">t</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="40"><span class="char" data-ci="0">f</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">t</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="41"><span class="char" data-ci="0">c</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">t</span><span class="char" data-ci="4">r</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">b</span><span class="char" data-ci="7">u</span><span class="char" data-ci="8">t</span><span class="char" data-ci="9">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="42"><span class="char" data-ci="0">g</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">u</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">n</span><span class="char" data-ci="6">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="43"><span class="char" data-ci="0">g</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">t</span><span class="char" data-ci="4">u</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">o</span><span class="char" data-ci="8">u</span><span class="char" data-ci="9">s</span><span class="char" data-ci="10">1</span><span class="char" data-ci="11">!</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="44"><span class="char" data-ci="0">o</span><span class="char" data-ci="1">b</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">u</span><span class="char" data-ci="4">s</span><span class="char" data-ci="5">e</span><span class="char" data-ci="6">'</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="45"><span class="char" data-ci="0">c</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">m</span><span class="char" data-ci="3">p</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="46"><span class="char" data-ci="0">n</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="47"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">p</span><span class="char" data-ci="5">h</span><span class="char" data-ci="6">e</span><span class="char" data-ci="7">r</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="48"><span class="char" data-ci="0">t</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">t</span><span class="char" data-ci="4">f</span><span class="char" data-ci="5">u</span><span class="char" data-ci="6">l</span><span class="char" data-ci="7">9</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="49"><span class="char" data-ci="0">m</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">t</span><span class="char" data-ci="5">o</span><span class="char" data-ci="6">r</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="50"><span class="char" data-ci="0">e</span><span class="char" data-ci="1">x</span><span class="char" data-ci="2">p</span><span class="char" data-ci="3">l</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">c</span><span class="char" data-ci="6">i</span><span class="char" data-ci="7">t</span><span class="char" data-ci="8">9</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="51"><span class="char" data-ci="0">h</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">r</span><span class="char" data-ci="3">b</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">n</span><span class="char" data-ci="6">g</span><span class="char" data-ci="7">e</span><span class="char" data-ci="8">r</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="52"><span class="char" data-ci="0">s</span><span class="char" data-ci="1">t</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">g</span><span class="char" data-ci="4">n</span><span class="char" data-ci="5">a</span><span class="char" data-ci="6">n</span><span class="char" data-ci="7">t</span><span class="char" data-ci="8">6</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="53"><span class="char" data-ci="0">t</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">n</span><span class="char" data-ci="4">s</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">e</span><span class="char" data-ci="7">n</span><span class="char" data-ci="8">t</span><span class="char" data-ci="9">)</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="54"><span class="char" data-ci="0">u</span><span class="char" data-ci="1">t</span><span class="char" data-ci="2">i</span><span class="char" data-ci="3">l</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">z</span><span class="char" data-ci="6">e</span><span class="char" data-ci="7">4</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="55"><span class="char" data-ci="0">b</span><span class="char" data-ci="1">l</span><span class="char" data-ci="2">u</span><span class="char" data-ci="3">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="56"><span class="char" data-ci="0">r</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">m</span><span class="char" data-ci="3">o</span><span class="char" data-ci="4">n</span><span class="char" data-ci="5">s</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">r</span><span class="char" data-ci="8">a</span><span class="char" data-ci="9">t</span><span class="char" data-ci="10">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="57"><span class="char" data-ci="0">i</span><span class="char" data-ci="1">n</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">o</span><span class="char" data-ci="4">c</span><span class="char" data-ci="5">u</span><span class="char" data-ci="6">o</span><span class="char" data-ci="7">u</span><span class="char" data-ci="8">s</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="58"><span class="char" data-ci="0">t</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">n</span><span class="char" data-ci="4">s</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">e</span><span class="char" data-ci="7">n</span><span class="char" data-ci="8">t</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="59"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">r</span><span class="char" data-ci="3">e</span><span class="char" data-ci="4">c</span><span class="char" data-ci="5">t</span><span class="char" data-ci="6">0</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="60"><span class="char" data-ci="0">f</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">i</span><span class="char" data-ci="3">l</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="61"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">p</span><span class="char" data-ci="2">p</span><span class="char" data-ci="3">e</span><span class="char" data-ci="4">a</span><span class="char" data-ci="5">r</span><span class="char" data-ci="6">.</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="62"><span class="char" data-ci="0">u</span><span class="char" data-ci="1">b</span><span class="char" data-ci="2">i</span><span class="char" data-ci="3">q</span><span class="char" data-ci="4">u</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">o</span><span class="char" data-ci="8">u</span><span class="char" data-ci="9">s</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="63"><span class="char" data-ci="0">b</span><span class="char" data-ci="1">l</span><span class="char" data-ci="2">o</span><span class="char" data-ci="3">c</span><span class="char" data-ci="4">k</span><span class="char" data-ci="5">(</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="64"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">o</span><span class="char" data-ci="3">u</span><span class="char" data-ci="4">n</span><span class="char" data-ci="5">d</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="65"><span class="char" data-ci="0">g</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">e</span><span class="char" data-ci="4">r</span><span class="char" data-ci="5">a</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="66"><span class="char" data-ci="0">m</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">g</span><span class="char" data-ci="5">a</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="67"><span class="char" data-ci="0">b</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">d</span><span class="char" data-ci="4">5</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="68"><span class="char" data-ci="0">s</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">r</span><span class="char" data-ci="3">d</span><span class="char" data-ci="4">o</span><span class="char" data-ci="5">n</span><span class="char" data-ci="6">i</span><span class="char" data-ci="7">c</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="69"><span class="char" data-ci="0">m</span><span class="char" data-ci="1">u</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">h</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="70"><span class="char" data-ci="0">b</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">l</span><span class="char" data-ci="3">l</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">g</span><span class="char" data-ci="6">e</span><span class="char" data-ci="7">r</span><span class="char" data-ci="8">e</span><span class="char" data-ci="9">n</span><span class="char" data-ci="10">t</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="71"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">c</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">v</span><span class="char" data-ci="5">a</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">e</span><span class="char" data-ci="8">!</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="72"><span class="char" data-ci="0">l</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">r</span><span class="char" data-ci="3">g</span><span class="char" data-ci="4">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="73"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">c</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">e</span><span class="char" data-ci="4">s</span><span class="char" data-ci="5">s</span><span class="char" data-ci="6">o</span><span class="char" data-ci="7">r</span><span class="char" data-ci="8">y</span><span class="char" data-ci="9">6</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="74"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">c</span><span class="char" data-ci="5">u</span><span class="char" data-ci="6">l</span><span class="char" data-ci="7">a</span><span class="char" data-ci="8">t</span><span class="char" data-ci="9">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="75"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">l</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">e</span><span class="char" data-ci="4">r</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="76"><span class="char" data-ci="0">s</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">i</span><span class="char" data-ci="3">s</span><span class="char" data-ci="4">m</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">c</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="77"><span class="char" data-ci="0">c</span><span class="char" data-ci="1">h</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">l</span><span class="char" data-ci="4">l</span><span class="char" data-ci="5">e</span><span class="char" data-ci="6">n</span><span class="char" data-ci="7">g</span><span class="char" data-ci="8">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="78"><span class="char" data-ci="0">d</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">r</span><span class="char" data-ci="3">e</span><span class="char" data-ci="4">c</span><span class="char" data-ci="5">t</span><span class="char" data-ci="6">0</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="79"><span class="char" data-ci="0">f</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">l</span><span class="char" data-ci="3">l</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="80"><span class="char" data-ci="0">c</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">l</span><span class="char" data-ci="3">d</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="81"><span class="char" data-ci="0">m</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">d</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">c</span><span class="char" data-ci="5">u</span><span class="char" data-ci="6">m</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="82"><span class="char" data-ci="0">g</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">u</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">n</span><span class="char" data-ci="6">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="83"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">l</span><span class="char" data-ci="2">l</span><span class="char" data-ci="3">o</span><span class="char" data-ci="4">c</span><span class="char" data-ci="5">a</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="84"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">n</span><span class="char" data-ci="2">n</span><span class="char" data-ci="3">u</span><span class="char" data-ci="4">a</span><span class="char" data-ci="5">l</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="85"><span class="char" data-ci="0">o</span><span class="char" data-ci="1">u</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">s</span><span class="char" data-ci="4">i</span><span class="char" data-ci="5">d</span><span class="char" data-ci="6">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="86"><span class="char" data-ci="0">s</span><span class="char" data-ci="1">t</span><span class="char" data-ci="2">o</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">c</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="87"><span class="char" data-ci="0">l</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">c</span><span class="char" data-ci="3">a</span><span class="char" data-ci="4">l</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="88"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">p</span><span class="char" data-ci="2">p</span><span class="char" data-ci="3">r</span><span class="char" data-ci="4">o</span><span class="char" data-ci="5">a</span><span class="char" data-ci="6">c</span><span class="char" data-ci="7">h</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="89"><span class="char" data-ci="0">b</span><span class="char" data-ci="1">u</span><span class="char" data-ci="2">r</span><span class="char" data-ci="3">n</span><span class="char" data-ci="4">)</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="90"><span class="char" data-ci="0">l</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">q</span><span class="char" data-ci="3">u</span><span class="char" data-ci="4">a</span><span class="char" data-ci="5">c</span><span class="char" data-ci="6">i</span><span class="char" data-ci="7">o</span><span class="char" data-ci="8">u</span><span class="char" data-ci="9">s</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="91"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">c</span><span class="char" data-ci="2">t</span><span class="char" data-ci="3">i</span><span class="char" data-ci="4">v</span><span class="char" data-ci="5">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="92"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">s</span><span class="char" data-ci="2">s</span><span class="char" data-ci="3">e</span><span class="char" data-ci="4">t</span><span class="char" data-ci="5">7</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="93"><span class="char" data-ci="0">r</span><span class="char" data-ci="1">e</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">d</span><span class="char" data-ci="4">y</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="94"><span class="char" data-ci="0">h</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">u</span><span class="char" data-ci="3">g</span><span class="char" data-ci="4">h</span><span class="char" data-ci="5">t</span><span class="char" data-ci="6">y</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="95"><span class="char" data-ci="0">c</span><span class="char" data-ci="1">o</span><span class="char" data-ci="2">m</span><span class="char" data-ci="3">p</span><span class="char" data-ci="4">l</span><span class="char" data-ci="5">e</span><span class="char" data-ci="6">t</span><span class="char" data-ci="7">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="96"><span class="char" data-ci="0">a</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">r</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="97"><span class="char" data-ci="0">l</span><span class="char" data-ci="1">a</span><span class="char" data-ci="2">s</span><span class="char" data-ci="3">t</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="98"><span class="char" data-ci="0">g</span><span class="char" data-ci="1">r</span><span class="char" data-ci="2">a</span><span class="char" data-ci="3">n</span><span class="char" data-ci="4">d</span><span class="char" data-ci="5">i</span><span class="char" data-ci="6">o</span><span class="char" data-ci="7">s</span><span class="char" data-ci="8">e</span><span class="char space-char" style="display: none;"> </span></span><span class="word" data-wi="99"><span class="char" data-ci="0">g</span><span class="char" data-ci="1">i</span><span class="char" data-ci="2">v</span><span class="char" data-ci="3">e</span><span class="char" data-ci="4">"</span></span></div>
+    <div id="caret" class="" style="width: 2px; left: 0px; top: 6px; height: 29px;"></div>
+  </div>
+
+  <input type="text" id="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
+  <div id="hint">
+    <kbd>Tab</kbd> restart &nbsp;·&nbsp; <kbd>Esc</kbd> cancel
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" style="display: none;">
+    <h2>results</h2>
+    <div id="results-top">
+      <div id="results-stats">
+        <div class="result-big">
+          <div class="val" id="res-wpm">0</div>
+          <div class="lbl">wpm</div>
+        </div>
+        <div class="result-row">
+          <div class="result-item">
+            <div class="val" id="res-raw">0</div>
+            <div class="lbl">raw</div>
+          </div>
+          <div class="result-item">
+            <div class="val" id="res-acc">0%</div>
+            <div class="lbl">accuracy</div>
+          </div>
+          <div class="result-item">
+            <div class="val" id="res-cons">0%</div>
+            <div class="lbl">consistency</div>
+          </div>
+        </div>
+        <div class="result-row">
+          <div class="result-item">
+            <div class="val" id="res-time">0s</div>
+            <div class="lbl">time</div>
+          </div>
+          <div class="result-item">
+            <div class="val" id="res-words">0</div>
+            <div class="lbl">words</div>
+          </div>
+          <div class="result-item">
+            <div class="val" id="res-chars">0</div>
+            <div class="lbl">chars</div>
+          </div>
+        </div>
+      </div>
+      <div id="chart-wrap">
+        <canvas id="wpm-chart"></canvas>
+      </div>
+    </div>
+
+    <div id="results-bottom">
+      <div class="result-card">
+        <div class="card-title">characters</div>
+        <div class="card-val">
+          <span class="char-correct" id="res-cor">0</span>/
+          <span class="char-incorrect" id="res-inc">0</span>/
+          <span class="char-extra" id="res-ext">0</span>/
+          <span class="char-missed" id="res-mis">0</span>
+        </div>
+        <div class="card-title" style="margin-top:4px">correct / incorrect / extra / missed</div>
+      </div>
+      <div class="result-card">
+        <div class="card-title">mode</div>
+        <div class="card-val" id="res-mode">time 30s</div>
+      </div>
+      <div class="result-card">
+        <div class="card-title">best wpm</div>
+        <div class="card-val" id="res-best">0</div>
+      </div>
+    </div>
+
+    <div id="result-actions">
+      <button class="action-btn secondary" id="redo-btn">⟳ redo test</button>
+      <button class="action-btn primary" id="restart-btn-res">new test</button>
+    </div>
+  </div>
+</main>
+
+<script>
+// ===== WORD POOL =====
+const WORDS = `
+able about above absent absorb abstract abundant accept access accident account accurate achieve acid acquire across act action active adapt add address adequate adjust admire admit adopt advance advice afford afraid after again age agree ahead air allow almost alone already also alter always amaze ambition among ample ancient angle angry animal annual answer appear apple apply area argue arise army around arrive ask aspect asset assume attempt attend attract avoid aware away awful
+baby back balance base basic battle bear beat become begin behind believe below benefit best better between beyond big bind birth bite blame blend bless blind block blow blue border bother bottom bounce brave break bright bring broad broke brother brush build burn burst busy
+call calm camp capture carry catch cause caution celebrate change charge check choose circle city claim clean clear close cold come common complete concern confidence connect constant control cool copy core count country couple cover create cross cup current
+daily damage dance data daughter deal deep define deliver demand depend describe desire detail develop differ direct display divide double down draw drive drop during
+each earn edge elect empty end enjoy enter equal escape even every exact exist expect explain expose extend
+face fact fail family famous far fear feel fetch fight figure fill final find finish firm first fix focus fold follow form found free fresh friend full function
+gather give glad grant great grow guide
+half hand happen hard have head heart help hold hope human
+idea improve income increase inner involve
+join journey just
+keep kind know
+large last laugh lead learn leave left life light likely listen little local long look lose loud love
+main major manage matter mean member mention might mind miss much must
+name never next night none normal note
+often old once open order other outside
+pass peace pick place plain plan point power provide pull push
+quick quiet
+raise reach read ready real relate remain rest right rise
+safe scene search seem share shift show sign sit skill slow small solve some sort spend still stop strong study support
+take talk tend think though time title today together touch true try turn
+under unique until update use
+very view vital
+walk want watch whole wide will wish work world write
+abandon abrupt absence abstract academic accelerate accommodate accomplish accurate achieve acquire activate acute adapt adjacent administer advance adverse aesthetic affirm aggregate agitate alleviate allocate alter ambiguous amend analyze anticipate apparent apply approach approve arbitrary articulate assess assume attribute authorize
+balance barrier benefit broad bureaucratic
+calculate capacity challenge circumstance clarify collaborate compensate component comprehensive conceive conclude considerable constitute constraint consume context contradict contribute controversy conventional coordinate
+debate decision define demonstrate dependent derive determine develop differential diminish discrete distribute doctrine dynamic
+elaborate eliminate emerging emphasis empirical enhance enforce engage establish evaluate evolve examine exception explicit extent
+facilitate feature fundamental
+generate guidance
+hypothesis
+identify implement implication incorporate indicate influence initiative integrate interpret
+justify
+maintain manifest mechanism modify monitor
+negotiate
+objective obtain outcome
+participate perceive phenomenon potential procedure process propose protocol
+rational reduce refine resolve resource respond restrict revise
+significant simulate specific strategy subsequent substantial supplement
+theory threshold transition
+undermine utilize
+validate variable
+abandon abdomen abhorrent abolish abrasive abrupt abscess abstain abstract absurdity academic accelerate accessory accommodate acrimony accolade accumulate accurate acquiesce acrimonious adhere adjacent adjudicate adversarial advocate aesthetic aggravate alleviate allocate altercation ambiguity ameliorate amplify anachronism antagonize antiquated arbitrary archaic articulate aspire assiduous astute atrophy augment autonomous avert axiom
+beguile belligerent benevolent bewildering bureaucratic
+cacophony capricious catalyst cerebral circumspect clandestine coerce coherent colloquial conceited condescend convoluted corroborate cryptic cynical
+dauntless debilitate decadent decipher delineate derogatory disdain disparate dissent dogmatic dubious
+eccentric eloquent embellish emulate enigmatic ephemeral equivocal eradicate exacerbate exasperate exemplary exhaustive expedient explicit exquisite
+fabricate facetious fallible fastidious fervent fluctuate foreboding fortuitous frugal fundamental
+garrulous genuine grandiose grievous guileless
+hamper harbinger haughty hegemony hypocritical
+idiosyncratic imminent impartial impetuous incisive incongruous indolent ineffable infer inherent innate insidious intrepid
+judicious
+laconic languid loquacious lucid
+magnanimous meticulous mundane
+nefarious negligent nuanced
+obfuscate oblivious obsolete obtuse ominous
+palliate paradigm pedantic perfidious perspicacious platitude pragmatic precarious predilection prolific propitious punctilious
+querulous quixotic
+reticent rhetoric rigorous
+sagacious sanctimonious sardonic scrutinize serendipity skeptical solicitous spurious stagnant steadfast stoic stringent subvert succinct superficial sycophant
+taciturn tangential tenacious terse transient trepidation
+ubiquitous unequivocal unfettered untenable
+vacuous verbose vindictive
+wary whimsical
+zealous
+aberrant abnegate abscond absolve accrue acumen adamant adroit agnostic alacrity alienate amalgamate ambivalent amiable anachronism anarchy appease ardent arduous articulate astute audacious augment auspicious avarice aversion
+banal belittle benign boorish brevity
+camaraderie capitulate caveat circumvent clemency cogent complicity concede condone conjecture contentious contrite covert credulous culpable
+dearth debunk decorum deficient delineate demagogue demure deprecate deter devout diffuse diligent discern draconian duplicitous
+earnest ebullient effusive eminent empathy enact equanimity erudite esoteric euphemism exonerate expedient
+fervid flagrant fleeting foment frugal
+garrulous germane grandiose gratuitous grave
+hapless harangue herald hyperbole
+idyllic immutable impeccable imperious impertinent implicit impunity incite incongruent incredulous indignant inept inertia infamy innocuous insidious insular intransigent intrinsic
+judicious juxtapose
+keen kinetic
+lament latent laudable lax lenient lethargic levity lucid
+malleable manifest martyr meager mendacious mercurial mired modicum moratorium
+nebulous nefarious nominal
+objective oblivion odious omnipotent onus opaque ostentatious
+palpable paradigm paradox partisan paucity pejorative penchant pervasive plausible poignant polemic ponderous pragmatic preclude pretentious prevalent profound prolific
+quandary querulous
+rancor reconcile rectify redress refute relegate remedial remorse resilient rife rigorous
+sagacity salutary sardonic scrutinize sedulous seismic seminal shrewd sinister skeptic solace solemn specious spontaneous spurious stagnant steadfast stoic stringent subjugate subtle supersede sycophantic
+tactful tedious tenuous timid tractable transgress transient trepidation turbulent
+ubiquitous undermine unilateral usurp
+vehement venerate verbose viable vindicate vitiate volatile
+wary waver whimsical willful
+yearn
+zealous
+accommodate annihilate archetype arduous assiduous austere authoritative
+cognizant conundrum culpability
+debilitate declivity decorum deferential defiance detrimental dialectical didactic discordant disparate dissemble
+elusive endemic enervate ephemeral equitable evasive exacerbate exhaustive expedient explicit
+fallacious fastidious formidable forthright fraudulent frivolous
+garrulous genuine germane gratuitous guileful
+hegemonic heterogeneous hubris
+imminent impartial incongruous indiscriminate inexorable insidious intractable
+juxtapose
+laconic languid lethargic lucid luminous
+magnanimous maladroit meticulous mitigate myopic
+nascent nefarious nihilistic nuanced
+obdurate obsequious obtuse ominous oppressive ostensible
+paradoxical pervasive plethora poignant pragmatic precarious presumptuous prevalent profligate
+querulous quixotic
+rancorous recalcitrant reckless redolent remonstrate repudiate resilient reticent
+sagacious sardonic scathing sycophant
+tenacious transient turbulent
+ubiquitous unscrupulous usurp
+vacuous verbose vindictive volatile
+zealous
+`
+  .split(/\s+/).filter(w => w.length >= 2);
+
+const QUOTES = [
+  { size: 'short', text: "The only way to do great work is to love what you do." },
+  { size: 'short', text: "In the middle of every difficulty lies opportunity." },
+  { size: 'short', text: "Life is what happens when you are busy making other plans." },
+  { size: 'short', text: "The future belongs to those who believe in the beauty of their dreams." },
+  { size: 'short', text: "It does not matter how slowly you go as long as you do not stop." },
+  { size: 'medium', text: "Two roads diverged in a wood, and I took the one less traveled by, and that has made all the difference in the end." },
+  { size: 'medium', text: "Success is not final, failure is not fatal: it is the courage to continue that counts. Always keep moving forward." },
+  { size: 'medium', text: "The greatest glory in living lies not in never falling, but in rising every time we fall. That is the true test of character." },
+  { size: 'medium', text: "Spread love everywhere you go. Let no one ever come to you without leaving happier. Be the change you wish to see." },
+  { size: 'long', text: "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness." },
+  { size: 'long', text: "To be, or not to be, that is the question: whether it is nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles and by opposing end them." },
+  { size: 'long', text: "All that is gold does not glitter, not all those who wander are lost; the old that is strong does not wither, deep roots are not reached by the frost. From the ashes a fire shall be woken, a light from the shadows shall spring." },
+];
+
+const NUMBERS = '0123456789';
+const PUNCT = '.,!?;:\'"()-';
+
+// ===== STATE =====
+let state = {
+  mode: 'time',
+  timeVal: 30,
+  wordVal: 25,
+  quoteSize: 'medium',
+  theme: 'dark',
+  punct: false,
+  nums: false,
+  liveWpm: true,
+  blind: false,
+  caretStyle: 'line',
+  fontSize: '1.4rem',
+
+  words: [],
+  currentWord: 0,
+  currentChar: 0,
+  typedWords: [],
+  typedCurrent: '',
+
+  started: false,
+  finished: false,
+  startTime: null,
+  timerInterval: null,
+  timeLeft: 30,
+  elapsed: 0,
+
+  wpmHistory: [],
+  rawHistory: [],
+  correctChars: 0,
+  incorrectChars: 0,
+  extraChars: 0,
+  missedChars: 0,
+  totalKeystrokes: 0,
+  correctKeystrokes: 0,
+
+  lastRedoWords: null,
+  bestWpm: 0,
+};
+
+// ===== DOM =====
+const $wd = document.getElementById('word-display');
+const $input = document.getElementById('hidden-input');
+const $caret = document.getElementById('caret');
+const $timer = document.getElementById('timer-display');
+const $liveWpm = document.getElementById('live-wpm');
+const $liveRaw = document.getElementById('live-raw');
+const $liveAcc = document.getElementById('live-acc');
+const $statWpm = document.getElementById('stat-wpm');
+const $statRaw = document.getElementById('stat-raw');
+const $statAcc = document.getElementById('stat-acc');
+const $progressBar = document.getElementById('progress-bar');
+const $capsWarn = document.getElementById('capslock-warn');
+const $results = document.getElementById('results');
+const $hint = document.getElementById('hint');
+let wpmChart = null;
+
+// ===== HELPERS =====
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getRandWord() {
+  let w = WORDS[Math.floor(Math.random() * WORDS.length)];
+  if (state.nums && Math.random() < 0.15) {
+    w += NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+  }
+  if (state.punct && Math.random() < 0.2) {
+    w += PUNCT[Math.floor(Math.random() * PUNCT.length)];
+  }
+  return w;
+}
+
+function generateWords() {
+  if (state.mode === 'quote') {
+    const quotes = QUOTES.filter(q => q.size === state.quoteSize);
+    const q = quotes[Math.floor(Math.random() * quotes.length)];
+    return q.text.split(' ');
+  }
+  if (state.mode === 'zen') {
+    const arr = [];
+    for (let i = 0; i < 200; i++) arr.push(getRandWord());
+    return arr;
+  }
+  if (state.mode === 'words') {
+    const arr = [];
+    for (let i = 0; i < state.wordVal; i++) arr.push(getRandWord());
+    return arr;
+  }
+  // time mode — generate plenty
+  const arr = [];
+  for (let i = 0; i < 300; i++) arr.push(getRandWord());
+  return arr;
+}
+
+// ===== RENDER =====
+function renderWords() {
+  $wd.innerHTML = '';
+  state.words.forEach((word, wi) => {
+    const wEl = document.createElement('span');
+    wEl.className = 'word';
+    wEl.dataset.wi = wi;
+    [...word].forEach((ch, ci) => {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.dataset.ci = ci;
+      span.textContent = ch;
+      wEl.appendChild(span);
+    });
+    $wd.appendChild(wEl);
+    // space span
+    if (wi < state.words.length - 1) {
+      const sp = document.createElement('span');
+      sp.className = 'char space-char';
+      sp.textContent = ' ';
+      sp.style.display = 'none';
+      wEl.appendChild(sp);
+    }
+  });
+  updateCharClasses();
+  moveCaret();
+}
+
+function updateCharClasses() {
+  const wordEls = $wd.querySelectorAll('.word');
+  wordEls.forEach((wEl, wi) => {
+    const charEls = wEl.querySelectorAll('.char:not(.space-char)');
+    const typed = wi < state.typedWords.length ? state.typedWords[wi] : (wi === state.currentWord ? state.typedCurrent : '');
+
+    charEls.forEach((ch, ci) => {
+      ch.className = 'char';
+      if (wi < state.currentWord || (wi === state.currentWord && state.finished)) {
+        // word done
+        if (ci < typed.length) {
+          if (state.blind) {
+            ch.classList.add('correct');
+          } else {
+            ch.classList.add(typed[ci] === ch.textContent ? 'correct' : 'incorrect');
+          }
+        } else {
+          ch.classList.add('incorrect'); // missed
+        }
+      } else if (wi === state.currentWord) {
+        if (ci < typed.length) {
+          if (state.blind) {
+            ch.classList.add('correct');
+          } else {
+            ch.classList.add(typed[ci] === ch.textContent ? 'correct' : 'incorrect');
+          }
+        }
+      }
+    });
+
+    // extra chars
+    wEl.querySelectorAll('.char.extra').forEach(e => e.remove());
+    if (wi <= state.currentWord) {
+      const t = wi === state.currentWord ? state.typedCurrent : (state.typedWords[wi] || '');
+      if (t.length > charEls.length) {
+        const extra = t.slice(charEls.length);
+        [...extra].forEach(ch => {
+          const sp = document.createElement('span');
+          sp.className = 'char extra';
+          sp.textContent = ch;
+          const insertBefore = wEl.querySelector('.space-char');
+          if (insertBefore) wEl.insertBefore(sp, insertBefore);
+          else wEl.appendChild(sp);
+        });
+      }
+    }
+  });
+}
+
+function moveCaret() {
+  if (state.finished) { $caret.style.display = 'none'; return; }
+  $caret.style.display = '';
+
+  const wEl = $wd.querySelectorAll('.word')[state.currentWord];
+  if (!wEl) return;
+
+  const typed = state.typedCurrent;
+  const charEls = [...wEl.querySelectorAll('.char:not(.space-char):not(.extra)')];
+  const extraEls = [...wEl.querySelectorAll('.char.extra')];
+  const allVisibleChars = [...charEls, ...extraEls];
+
+  let refEl;
+  let afterEl = false;
+
+  if (typed.length === 0) {
+    refEl = charEls[0];
+    afterEl = false;
+  } else if (typed.length <= allVisibleChars.length) {
+    refEl = allVisibleChars[typed.length - 1];
+    afterEl = true;
+  } else {
+    refEl = allVisibleChars[allVisibleChars.length - 1];
+    afterEl = true;
+  }
+
+  if (!refEl) return;
+
+  const wdRect = $wd.getBoundingClientRect();
+  const charRect = refEl.getBoundingClientRect();
+
+  const left = charRect.left - wdRect.left + (afterEl ? charRect.width : 0);
+  const top = charRect.top - wdRect.top + $wd.scrollTop;
+  const height = charRect.height;
+
+  // Apply caret style
+  const cs = state.caretStyle;
+  $caret.className = '';
+  if (cs === 'off') { $caret.classList.add('no-caret'); return; }
+  if (cs === 'block') {
+    $caret.classList.add('block');
+    $caret.style.width = charRect.width + 'px';
+    $caret.style.left = (left - (afterEl ? charRect.width : 0)) + 'px';
+  } else {
+    $caret.style.width = '2px';
+    $caret.style.left = left + 'px';
+  }
+  $caret.style.top = top + 'px';
+  $caret.style.height = height + 'px';
+
+  // Scroll
+  const lineH = height * 1.9;
+  const visH = $wd.clientHeight;
+  const caretTop = top;
+  if (caretTop > visH - lineH * 1.5) {
+    $wd.scrollTop += lineH;
+  }
+}
+
+// ===== STATS =====
+function calcStats() {
+  const elapsed = (Date.now() - state.startTime) / 1000 / 60; // minutes
+  if (elapsed <= 0) return { wpm: 0, raw: 0, acc: 100 };
+
+  // WPM: correct chars / 5 / minutes
+  const correctChars = state.correctChars;
+  const totalTyped = state.totalKeystrokes;
+  const wpm = Math.round(correctChars / 5 / elapsed);
+  const raw = Math.round(totalTyped / 5 / elapsed);
+  const acc = totalTyped > 0 ? Math.round((state.correctKeystrokes / totalTyped) * 100) : 100;
+  return { wpm: Math.max(0, wpm), raw: Math.max(0, raw), acc };
+}
+
+function updateLiveStats() {
+  if (!state.started) return;
+  const { wpm, raw, acc } = calcStats();
+  if (state.liveWpm) {
+    $liveWpm.textContent = wpm;
+    $liveRaw.textContent = raw;
+  }
+  $liveAcc.textContent = acc + '%';
+}
+
+function calcConsistency() {
+  if (state.wpmHistory.length < 2) return 100;
+  const avg = state.wpmHistory.reduce((a, b) => a + b, 0) / state.wpmHistory.length;
+  if (avg === 0) return 100;
+  const variance = state.wpmHistory.reduce((a, b) => a + (b - avg) ** 2, 0) / state.wpmHistory.length;
+  const sd = Math.sqrt(variance);
+  return Math.max(0, Math.round(100 - (sd / avg) * 100));
+}
+
+// ===== TIMER / TICK =====
+function startTest() {
+  if (state.started) return;
+  state.started = true;
+  state.startTime = Date.now();
+
+  // show stats
+  $statWpm.classList.add('visible');
+  $statRaw.classList.add('visible');
+  $statAcc.classList.add('visible');
+
+  if (state.mode === 'time') {
+    $timer.classList.add('visible');
+    state.timerInterval = setInterval(tick, 200);
+  } else if (state.mode === 'zen') {
+    $timer.classList.remove('visible');
+    document.body.classList.add('zen-mode');
+  } else {
+    $timer.classList.add('visible');
+    $timer.textContent = '⏱';
+    state.timerInterval = setInterval(tick, 200);
+  }
+}
+
+let lastWpmSnapshot = 0;
+let lastSnapshotTime = 0;
+
+function tick() {
+  if (!state.started || state.finished) return;
+  const now = Date.now();
+  const elapsed = (now - state.startTime) / 1000;
+
+  if (state.mode === 'time') {
+    state.timeLeft = Math.max(0, state.timeVal - elapsed);
+    $timer.textContent = Math.ceil(state.timeLeft);
+    updateLiveStats();
+
+    // snapshot WPM every second
+    if (Math.floor(elapsed) > lastWpmSnapshot) {
+      lastWpmSnapshot = Math.floor(elapsed);
+      const { wpm, raw } = calcStats();
+      state.wpmHistory.push(wpm);
+      state.rawHistory.push(raw);
+    }
+
+    if (state.timeLeft <= 0) {
+      finishTest();
+    }
+  } else {
+    state.elapsed = elapsed;
+    $timer.textContent = Math.floor(elapsed) + 's';
+    updateLiveStats();
+
+    if (Math.floor(elapsed) > lastWpmSnapshot) {
+      lastWpmSnapshot = Math.floor(elapsed);
+      const { wpm, raw } = calcStats();
+      state.wpmHistory.push(wpm);
+      state.rawHistory.push(raw);
+    }
+  }
+}
+
+// ===== TYPING LOGIC =====
+$input.addEventListener('keydown', function(e) {
+  if (state.finished) return;
+
+  // caps lock
+  if (e.getModifierState) {
+    $capsWarn.classList.toggle('show', e.getModifierState('CapsLock'));
+  }
+
+  if (e.key === 'Tab') { e.preventDefault(); resetTest(); return; }
+  if (e.key === 'Escape') { e.preventDefault(); resetTest(); return; }
+
+  if (!state.started && e.key.length === 1) {
+    startTest();
+  }
+
+  if (e.key === 'Backspace') {
+    if (state.typedCurrent.length > 0) {
+      state.typedCurrent = state.typedCurrent.slice(0, -1);
+      state.totalKeystrokes++;
+    } else if (state.currentWord > 0) {
+      // go back a word
+      state.currentWord--;
+      state.typedCurrent = state.typedWords.pop();
+    }
+    updateCharClasses();
+    moveCaret();
+    $caret.classList.add('typing');
+    clearTimeout(state.caretBlinkTO);
+    state.caretBlinkTO = setTimeout(() => $caret.classList.remove('typing'), 500);
+    return;
+  }
+
+  if (e.key === ' ') {
+    e.preventDefault();
+    if (state.typedCurrent.length === 0) return;
+
+    // score word
+    const expected = state.words[state.currentWord];
+    const typed = state.typedCurrent;
+
+    // correct chars
+    let wordCorrect = 0, wordIncorrect = 0, wordExtra = 0, wordMissed = 0;
+    const len = Math.max(expected.length, typed.length);
+    for (let i = 0; i < len; i++) {
+      if (i < expected.length && i < typed.length) {
+        if (expected[i] === typed[i]) { wordCorrect++; state.correctKeystrokes++; }
+        else wordIncorrect++;
+      } else if (i < typed.length) {
+        wordExtra++;
+      } else {
+        wordMissed++;
+      }
+    }
+    state.correctChars += wordCorrect;
+    state.incorrectChars += wordIncorrect;
+    state.extraChars += wordExtra;
+    state.missedChars += wordMissed;
+    state.totalKeystrokes += typed.length + 1; // +1 for space
+
+    state.typedWords.push(typed);
+    state.currentWord++;
+    state.typedCurrent = '';
+
+    // word mode end
+    if (state.mode === 'words' && state.currentWord >= state.wordVal) {
+      finishTest(); return;
+    }
+    // quote mode end
+    if (state.mode === 'quote' && state.currentWord >= state.words.length) {
+      finishTest(); return;
+    }
+    // progress bar
+    updateProgress();
+
+    updateCharClasses();
+    moveCaret();
+    return;
+  }
+
+  if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+    const expected = state.words[state.currentWord];
+    if (!expected) return;
+    // limit extra chars
+    if (state.typedCurrent.length >= expected.length + 20) return;
+
+    state.typedCurrent += e.key;
+    state.totalKeystrokes++;
+    if (state.typedCurrent[state.typedCurrent.length - 1] === expected[state.typedCurrent.length - 1]) {
+      state.correctKeystrokes++;
+    }
+
+    updateCharClasses();
+    moveCaret();
+    updateLiveStats();
+
+    $caret.classList.add('typing');
+    clearTimeout(state.caretBlinkTO);
+    state.caretBlinkTO = setTimeout(() => $caret.classList.remove('typing'), 500);
+  }
+});
+
+function updateProgress() {
+  if (state.mode === 'words') {
+    $progressBar.style.width = (state.currentWord / state.wordVal * 100) + '%';
+  } else if (state.mode === 'quote') {
+    $progressBar.style.width = (state.currentWord / state.words.length * 100) + '%';
+  } else if (state.mode === 'time') {
+    $progressBar.style.width = ((1 - state.timeLeft / state.timeVal) * 100) + '%';
+  }
+}
+
+// ===== FINISH =====
+function finishTest() {
+  if (state.finished) return;
+  state.finished = true;
+  clearInterval(state.timerInterval);
+
+  const elapsed = (Date.now() - state.startTime) / 1000;
+  const { wpm, raw, acc } = calcStats();
+  const cons = calcConsistency();
+
+  if (wpm > state.bestWpm) state.bestWpm = wpm;
+
+  // show results
+  $wd.style.display = 'none';
+  document.getElementById('word-display-wrap').style.display = 'none';
+  $timer.classList.remove('visible');
+  $statWpm.classList.remove('visible');
+  $statRaw.classList.remove('visible');
+  $statAcc.classList.remove('visible');
+  $hint.style.display = 'none';
+  document.getElementById('progress-bar-wrap').style.display = 'none';
+  $results.style.display = 'block';
+
+  document.getElementById('res-wpm').textContent = wpm;
+  document.getElementById('res-raw').textContent = raw;
+  document.getElementById('res-acc').textContent = acc + '%';
+  document.getElementById('res-cons').textContent = cons + '%';
+  document.getElementById('res-time').textContent = Math.round(elapsed) + 's';
+  document.getElementById('res-words').textContent = state.typedWords.length;
+  document.getElementById('res-chars').textContent = state.correctChars + state.incorrectChars + state.extraChars;
+  document.getElementById('res-cor').textContent = state.correctChars;
+  document.getElementById('res-inc').textContent = state.incorrectChars;
+  document.getElementById('res-ext').textContent = state.extraChars;
+  document.getElementById('res-mis').textContent = state.missedChars;
+  document.getElementById('res-best').textContent = state.bestWpm;
+
+  const modeLabel = state.mode === 'time' ? `time ${state.timeVal}s` :
+    state.mode === 'words' ? `words ${state.wordVal}` :
+    state.mode === 'quote' ? `quote ${state.quoteSize}` : 'zen';
+  document.getElementById('res-mode').textContent = modeLabel;
+
+  drawChart(elapsed);
+}
+
+function drawChart(elapsed) {
+  const ctx = document.getElementById('wpm-chart').getContext('2d');
+  if (wpmChart) { wpmChart.destroy(); }
+
+  const labels = state.wpmHistory.map((_, i) => i + 1 + 's');
+  const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+  const subColor = getComputedStyle(document.documentElement).getPropertyValue('--sub').trim();
+  const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text').trim();
+
+  wpmChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'WPM',
+          data: state.wpmHistory,
+          borderColor: accentColor,
+          backgroundColor: accentColor + '22',
+          tension: 0.4,
+          pointRadius: 2,
+          fill: true,
+          borderWidth: 2,
+        },
+        {
+          label: 'Raw',
+          data: state.rawHistory,
+          borderColor: subColor,
+          backgroundColor: 'transparent',
+          tension: 0.4,
+          pointRadius: 0,
+          fill: false,
+          borderWidth: 1.5,
+          borderDash: [4, 4],
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 600 },
+      plugins: {
+        legend: {
+          labels: { color: subColor, font: { family: 'Roboto Mono', size: 11 }, boxWidth: 20 }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: subColor, font: { family: 'Roboto Mono', size: 9 }, maxTicksLimit: 10 },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        },
+        y: {
+          ticks: { color: subColor, font: { family: 'Roboto Mono', size: 10 } },
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+// ===== RESET =====
+function resetTest(redo = false) {
+  clearInterval(state.timerInterval);
+  document.body.classList.remove('zen-mode');
+
+  const prevWords = redo && state.lastRedoWords ? state.lastRedoWords : null;
+
+  state.started = false;
+  state.finished = false;
+  state.startTime = null;
+  state.timerInterval = null;
+  state.timeLeft = state.timeVal;
+  state.elapsed = 0;
+  state.currentWord = 0;
+  state.currentChar = 0;
+  state.typedWords = [];
+  state.typedCurrent = '';
+  state.wpmHistory = [];
+  state.rawHistory = [];
+  state.correctChars = 0;
+  state.incorrectChars = 0;
+  state.extraChars = 0;
+  state.missedChars = 0;
+  state.totalKeystrokes = 0;
+  state.correctKeystrokes = 0;
+  lastWpmSnapshot = 0;
+
+  state.words = prevWords ? prevWords : generateWords();
+  if (!redo) state.lastRedoWords = state.words;
+
+  // UI reset
+  $results.style.display = 'none';
+  document.getElementById('word-display-wrap').style.display = '';
+  $wd.style.display = '';
+  $wd.scrollTop = 0;
+  $hint.style.display = '';
+  document.getElementById('progress-bar-wrap').style.display = '';
+  $progressBar.style.width = '0%';
+
+  $statWpm.classList.remove('visible');
+  $statRaw.classList.remove('visible');
+  $statAcc.classList.remove('visible');
+  $liveWpm.textContent = '0';
+  $liveRaw.textContent = '0';
+  $liveAcc.textContent = '100%';
+
+  if (state.mode === 'time') {
+    $timer.textContent = state.timeVal;
+    $timer.classList.add('visible');
+  } else {
+    $timer.textContent = '';
+    $timer.classList.remove('visible');
+  }
+
+  renderWords();
+  $input.focus();
+}
+
+// ===== SETTINGS BINDINGS =====
+// Mode buttons
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.mode = btn.dataset.mode;
+    updateSubOptions();
+    resetTest();
+  });
+});
+
+function updateSubOptions() {
+  const $sub = document.getElementById('sub-options');
+  $sub.innerHTML = '';
+
+  if (state.mode === 'time') {
+    [15, 30, 60, 120].forEach(v => {
+      const b = document.createElement('button');
+      b.className = 'opt-btn' + (v === state.timeVal ? ' active' : '');
+      b.textContent = v;
+      b.dataset.val = v;
+      b.addEventListener('click', () => {
+        $sub.querySelectorAll('.opt-btn').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        state.timeVal = v;
+        state.timeLeft = v;
+        resetTest();
+      });
+      $sub.appendChild(b);
+    });
+  } else if (state.mode === 'words') {
+    [10, 25, 50, 100].forEach(v => {
+      const b = document.createElement('button');
+      b.className = 'opt-btn' + (v === state.wordVal ? ' active' : '');
+      b.textContent = v;
+      b.addEventListener('click', () => {
+        $sub.querySelectorAll('.opt-btn').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        state.wordVal = v;
+        resetTest();
+      });
+      $sub.appendChild(b);
+    });
+  } else if (state.mode === 'quote') {
+    ['short', 'medium', 'long'].forEach(v => {
+      const b = document.createElement('button');
+      b.className = 'opt-btn' + (v === state.quoteSize ? ' active' : '');
+      b.textContent = v;
+      b.addEventListener('click', () => {
+        $sub.querySelectorAll('.opt-btn').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        state.quoteSize = v;
+        resetTest();
+      });
+      $sub.appendChild(b);
+    });
+  }
+  // zen — no sub options
+}
+
+// Theme
+document.getElementById('theme-select').addEventListener('change', function() {
+  state.theme = this.value;
+  document.documentElement.setAttribute('data-theme', this.value === 'dark' ? '' : this.value);
+});
+
+// Toggles
+function bindToggle(id, key) {
+  const btn = document.getElementById(id);
+  btn.addEventListener('click', () => {
+    state[key] = !state[key];
+    btn.classList.toggle('on', state[key]);
+    if (key === 'blind' || key === 'liveWpm') {
+      updateCharClasses();
+      if (!state.liveWpm) {
+        $liveWpm.textContent = '—';
+        $liveRaw.textContent = '—';
+      }
+    } else {
+      resetTest();
+    }
+  });
+}
+bindToggle('toggle-punct', 'punct');
+bindToggle('toggle-nums', 'nums');
+bindToggle('toggle-livewpm', 'liveWpm');
+bindToggle('toggle-blind', 'blind');
+
+// Caret style
+document.getElementById('caret-style').addEventListener('change', function() {
+  state.caretStyle = this.value;
+  moveCaret();
+});
+
+// Font size
+document.getElementById('font-size-sel').addEventListener('change', function() {
+  document.documentElement.style.setProperty('--font-size', this.value);
+  moveCaret();
+});
+
+// Result buttons
+document.getElementById('redo-btn').addEventListener('click', () => resetTest(true));
+document.getElementById('restart-btn-res').addEventListener('click', () => resetTest(false));
+
+// Global keyboard
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Tab') { e.preventDefault(); resetTest(); }
+  if (e.key === 'Escape') { e.preventDefault(); resetTest(); }
+  // Focus input when typing anywhere
+  if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
+    $input.focus();
+  }
+});
+
+// Click to focus
+document.getElementById('word-display-wrap').addEventListener('click', () => $input.focus());
+
+// ===== INIT =====
+updateSubOptions();
+resetTest();
+$input.focus();
+</script>
+
+
+</body></html>
